@@ -53,8 +53,20 @@ type TEXT DEFAULT 'celular'
 CREATE TABLE "bankAccount"(
 id serial NOT NULL PRIMARY KEY,
 "customerId" INTEGER REFERENCES "customers"("id"),
-"accountNumber" integer NOT NULL,
-"agency" integer NOT NULL,
+"accountNumber" INTEGER NOT NULL,
+"agency" INTEGER NOT NULL,
 "openDate" timestamp NOT NULL DEFAULT NOW(),
 "closeDate" timestamp
+);
+
+-- Table transations
+
+CREATE TABLE transations(
+id serial NOT NULL PRIMARY KEY,
+"bankAccountId" INTEGER REFERENCES "bankAccount"("id"),
+amount INTEGER NOT NULL,
+type TEXT,
+time timestamp NOT NULL DEFAULT NOW(),
+description TEXT,
+cancelled BOOLEAN DEFAULT false
 );
